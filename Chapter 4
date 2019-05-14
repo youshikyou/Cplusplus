@@ -1,37 +1,239 @@
 #include <iostream>
-using namespace std;
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
 
-int main() {
-/*4.5
-  struct Candybar{
-    char brand[20];
-    float weight;
-    int calory;
-  };
+int main(){
+	using namespace std;
 
 
-Candybar snack={
-  "Mocha",
-  2.3,
-  350,
-};
+	/* 数组名是数组的地址，用引号括起来的字符串常量也是地址。
+	
+	4.1
+	struct student {
+		char first_name[20];
+		char last_name[20];
+		char grade;
+		int age;
+	};
 
-cout<<snack.brand<<endl;*/
+
+	student one;
+	cout << "what is your first name?" << endl;
+	cin.getline(one.first_name,20);
+	cout << "What is your last name?" << endl;
+	cin.getline(one.last_name, 20);
+	cout << "what letter grade do you deserve?" << endl;
+	cin >> one.grade;
+	one.grade++;												//这里必须要完成叠加，在cout那里再叠加无效，原因未知。
+	cout << "what is your age?" << endl;
+	cin >> one.age;
+	cout << "Name: " << one.last_name << ", " << one.first_name << endl;
+	cout << "Grade: " << one.grade<< endl;
+	cout << "Age: " << one.age << endl;*/
+
+	/*4.2
+
+	cin读取时，遇到空格符就停止读入，所以想读取一行就要用
+	cin.getline(name,size)或者cin.get(name,size)这时候只读取了一行，还要加上cin.get()读取换行符再加上cin.get(dessert,size)(针对char)，
+	geline(cin,variable_name)（针对string）
+	
+	原程序是
+	const int ArSize = 20;
+	char name[ArSize];
+	char dessert[ArSize];
+	cout << "Enter your name:\n";
+	cin.getline(name,ArSize);
+	cout << "Enter your favorite dessert:\n";
+	cin.getline(dessert,ArSize);
+	cout << "I have some delicious " << dessert;
+	cout << " for you, " << name << ".\n";
+	return 0；
+
+	如果变量是string形式，则读取一行的形式不同。
+	
+	string name;  
+	string dessert;
+	cout << "Enter your name:\n";
+	getline(cin,name);
+	cout << "Enter your favorite dessert:\n";
+	getline(cin,dessert);
+	cout << "I have some delicious " << dessert;
+	cout << " for you, " << name << ".\n";
+	return 0； */
+	
+	
+
+	/*4.3 字符数组拼接
+	char first_name[20];
+	char last_name[20];
+	char full_name[40];
+	cout << "Enter your first name: " << endl;
+	cin.getline(first_name,20);
+	cout << "Enter your last name: " << endl;
+	cin.getline(last_name, 20);
+	strcpy_s(full_name, first_name);
+	strcat_s(full_name,", ");
+	strcat_s(full_name, last_name);
+	cout << "Here is the information in a single string: " << full_name << endl; 
+
+	/*4.4 考察字符串组拼接
+	string first_name;
+	string last_name;
+	string full_name;
+	cout << "Enter your first name: " << endl;
+	getline(cin,first_name);
+	cout << "Enter your last name: " << endl;
+	getline(cin,last_name);
+	full_name = first_name + ", " + last_name;
+	cout << "Here is the information in a single string: " <<full_name << endl;*/
+
+	/*4.5
+	  struct Candybar{
+		char brand[20];
+		float weight;
+		int calory;
+	  };
+
+	  结构体赋值，需要等号，每个单元是逗号
+		Candybar snack={
+		  "Mocha",
+		  2.3,
+		  350,
+		};
+
+		cout<<snack.brand<<endl;*/
 
 
-//4.6
-struct CandyBar{
-  char brand[20];
-  float weight;
-  int calory;
-};
-CandyBar snacks[3] = {
-    {"Mocha Munch", 2.3, 350},
-    {"Mocha Munch", 2.3, 350},
-    {"Mocha Munch", 2.3, 350}
-};
-  cout<<snacks[0].brand<<endl;
-  cout<<snacks[0].weight<<endl;
-  cout<<snacks[0].calory<<endl;
-  return 0 ;
+	/*4.6
+		struct CandyBar {
+			char brand[20];
+			float weight;
+			int calory;
+		};
+		CandyBar snacks[3] = {
+			{"Mocha Munch", 2.3, 350},
+			{"Mocha Munch", 2.3, 350},
+			{"Mocha Munch", 2.3, 350}
+		};
+		cout << snacks[0].brand << endl;
+		cout << snacks[0].weight << endl;
+		cout << snacks[0].calory << endl;
+		cout << snacks[1].brand << endl;
+		cout << snacks[1].weight << endl;
+		cout << snacks[1].calory << endl; 
+		cout << snacks[2].brand << endl;
+		cout << snacks[2].weight << endl;
+		cout << snacks[2].calory << endl; 
+
+	/*4.7 结构体
+	struct pizza {
+		string name;
+		float dia;
+		float weight;
+		};
+	pizza pizza_information {};
+	cout << "please input the pizza company name:" << endl;
+	getline(cin, pizza_information.name);
+	cout << "please input the diameter of the pizza:" << endl;
+	cin >> pizza_information.dia;
+	cout << "please input the weight of the pizza:" << endl;
+	cin >> pizza_information.weight;
+	cout <<"name:" <<pizza_information.name << endl;
+	cout << "diameter:"_<<information.dia << endl;
+	cout << "weight:"<<pizza_information.weight << endl;*/
+
+	/*4.8 采用new创建动态结构，有两种赋值方式注意区分 method1
+	struct pizza {
+		string name;
+		float diameter;
+		float weight;
+		};
+
+	pizza *p = new pizza;
+	cout << "diameter:" << endl; 
+	cin >> (p->diameter);
+	cin.get();   //注意，上一个语句输入直径后，会敲入回车符，如果不获取这个回车符，在下一行getline会获取这个回车符而得不到任何输入。
+	cout << "name:" << endl;
+	getline(cin, p->name);
+	cout << "weight:" << endl;
+	cin >> (p->weight);
+	cout << "name:" << p->name << endl;
+	cout << "diamter:" << p->diameter << endl;
+	cout << "weight:" << p->weight << endl;
+	delete p;
+
+	//method2
+	struct pizza {
+		string name;
+		float diameter;
+		float weight;
+	};
+
+	pizza *p = new pizza;
+	cout << "diameter:" << endl;
+	cin >> (*p).diameter;
+	cin.get();   //注意，上一个语句输入直径后，会敲入回车符，如果不获取这个回车符，在下一行getline会获取这个回车符而得不到任何输入。
+	cout << "name:" << endl;
+	getline(cin, (*p).name);
+	cout << "weight:" << endl;
+	cin >> ((*p).weight);
+	cout << "name:" << (*p).name << endl;
+	cout << "diamter:" << (*p).diameter << endl;
+	cout << "weight:" << (*p).weight << endl;
+	delete p;*/
+	
+
+	/*4.9 创建动态数组 包含了两种访问方式
+	struct CandyBar {
+		string brand;
+		float weight;
+		int calories;
+		};
+	CandyBar *p = new CandyBar[4];
+	p[0].brand = "Mocha Munch";
+	p[0].weight = 2.3;
+	p[0].calories = 350;
+	p[1].brand = "Mocha Munch";
+	p[1].weight = 2.3;
+	p[1].calories = 350;
+	p[2].brand = "Mocha Munch";
+	p[2].weight = 2.3;
+	p[2].calories = 350;
+	(p+3)->brand = "Mocha Munch";
+	(p+3)->weight = 2.3;
+	(p+3)->calories = 350;
+	cout << (p+3)->brand << endl;
+	delete[] p;*/
+
+	/*4.10  创建array
+	array<double, 3> time;
+	cout << "input your first time:" << endl;
+	cin >> time[0];
+	cout << "input your second time:" << endl;
+	cin >> time[1];
+	cout << "input your third time:" << endl;
+	cin >> time[2];
+	cout << "Round 3, " << (time[0] + time[1] + time[2]) / 3.0 << endl;*/
+
+
+	/*chapter5
+	for(initialization;test-expression;update-expression)
+	test- expression是在执行循环之前做判断，update-expression是循环之后做更新
+
+	++a 和a++效果一样，但是执行顺序不一样，cout<<++a<<endl,这时候是输出a+1，但是cout<<a++<<endl，这时候是输出a。
+	后缀形式比前缀形式运算速度稍慢，是因为后缀形式先复制一个副本，然后+1，然后把副本返回，而前缀形式直接+1
+	p154 需要注意*p++这种运算顺序，先p地址+1，然后*解除引用却是未递增前的。结果是输出了*p的值，然后p的地址加了1。
+	strcomp（），比较两个字符串，相等返回0，不等返回非0，正负根据asic码顺序，前一个字符串顺序靠后，则为正数。
+
+	cin忽略空格和换行符，发送给cin的输入会被缓冲，直到按下回车键才被发送到程序做处理。
+	cin.get()是可以读取包括空格，制表还有换行符所有字符。
+
+
+	*/
+
+	return 0;
+
+
 }
