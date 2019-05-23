@@ -910,3 +910,5 @@ int main() {
 	delete[]grand_patrons;
 	delete[]patrons; 
 	readfile.close();*/
+return 0;
+}
