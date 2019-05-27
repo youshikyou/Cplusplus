@@ -1,0 +1,44 @@
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+// 7.3
+using namespace std;
+
+struct box
+{
+	char maker[40];
+	float height;
+	float width;
+	float length;
+	float volume;
+};
+
+void display(const box);
+void display(box *);
+
+
+int main() {
+
+	box a = {"chocolate box",1.0f,2.0f,3.0f,6.0f};
+	box b = { "candy box",1.0f,2.0f,3.0f,0.0f };
+	display(a);
+	display(&b);
+	return 0;
+
+}
+void display(const box obj) {
+	cout << "name:" << obj.maker << endl;
+	cout << "height:" << obj.height << endl;
+	cout << "width:" << obj.width << endl;
+	cout << "length:" << obj.length << endl;
+	cout << "volume:" << obj.volume << endl;
+}
+
+void display(box *obj) {
+	cout << "name:" << (obj->maker) << endl;
+	(obj->volume) = (obj->length)*(obj->width)*(obj->height);
+	cout << "candy box volume: " << (obj->volume) << endl;
+}
