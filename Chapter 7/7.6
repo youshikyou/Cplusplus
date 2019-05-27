@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+// 7.6
+using namespace std;
+
+int fill_array(double *arr, int n);
+void show_array(const double *arr, int n);
+void reverse_array(double *arr, int n);
+
+int main(void)
+{
+	int n,value_num;
+	cout << "Please input an array length" << endl;
+	cin >> n;
+	double *arr= new double [n];
+	value_num = fill_array(arr, n);
+	show_array(arr, value_num);
+	reverse_array(arr, value_num);
+	show_array(arr, value_num);
+	delete[] arr;
+	return 0;
+}
+
+int fill_array(double *arr, int n)
+{
+	cout << "please input values(non_digit stop): " << endl;
+	double value;
+	int i;
+	for (i = 0; i<n&&cin >> value; i++)
+		arr[i] = value;
+	return i;	
+}
+
+void show_array(const double *arr,int n)
+{
+
+	for (int i =0; i<n; i++)
+	{
+		cout << arr[i] << "\t";
+	}
+	cout << endl;
+}
+
+void reverse_array(double * arr, int n)
+{
+	int i,j;
+	double temp;
+	for (i = 1,j=n-2;i<j;i++,j--)
+	{
+		temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+}
