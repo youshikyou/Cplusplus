@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+/* 7.8a
+using namespace std;
+
+const int seasons = 4;
+const char *snames[seasons] = { "spring","summer","fall","winter" };
+void fill(double *);
+void show(double *);
+
+
+int main(void)
+{
+	double expenses[seasons] = {0.0};
+	fill(expenses);
+	show(expenses);
+	return 0;
+}
+
+void fill(double * pa)
+{
+	for (int i = 0; i < seasons; i++)
+	{
+		cout << "Enter " << snames[i] << " expenses: ";
+		cin >> pa[i];
+	}
+}
+void show(double *pa)
+{
+	double total = 0.0;
+	cout << "\nEXPENSES\n";
+	for (int i = 0; i < seasons; i++)
+	{
+		cout << snames[i] << ": $" << pa[i] << endl;
+		total += pa[i];
+	}
+	cout << "Total Expenses:$" << total << endl;
+}*/
+
+//7.8b
+using namespace std;
+
+const int seasons = 4;
+const char *snames[seasons] = { "spring","summer","fall","winter" };
+
+struct ex {
+	double expense;
+};
+
+void fill(ex *);
+void show(ex *);
+
+
+int main(void)
+{
+	ex expenses[seasons] = { {0.0} };
+	fill(expenses);
+	show(expenses);
+	return 0;
+}
+
+void fill(ex * pa)
+{
+	for (int i = 0; i < seasons; i++)
+	{
+		cout << "Enter " << snames[i] << " expenses: ";
+		cin >> (pa+i)->expense;
+	}
+}
+void show(ex *pa)
+{
+	double total = 0.0;
+	cout << "\nEXPENSES\n";
+	for (int i = 0; i < seasons; i++)
+	{
+		cout << snames[i] << ": $" << (pa+i)->expense << endl;
+		total += (pa+i)->expense;
+	}
+	cout << "Total Expenses:$" << total << endl;
+}
