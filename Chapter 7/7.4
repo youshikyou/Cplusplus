@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+// 7.4
+using namespace std;
+long double probability(unsigned numbers, unsigned special_numbers, unsigned picks);
+
+
+
+int main() {
+
+	double field_number, picks,special_number;
+	cout << "Enter the field number, special field number and picks:\n";
+	while (cin >> field_number >> special_number >> picks)
+	{
+		cout << "You have one chance in ";
+		cout << probability(field_number,special_number,picks);
+		cout << " of winning.\n";
+		cout << "Next three numbers (q to quit): ";
+	}
+	cout << "bye\n";
+	return 0;
+
+}
+long double probability(unsigned numbers, unsigned special_numbers, unsigned picks) {
+	long double result = 1.0;
+	long double n;
+	unsigned p;
+	for (n = numbers, p = picks; p > 0; n--, p--)
+	{
+		result = result * (n / p);
+	}
+		
+	result = result * (long double(special_numbers) / long double(1));
+	return result;
+
+}
