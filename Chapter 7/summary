@@ -1,0 +1,57 @@
+/*chapter 7
+	1. c++函数返回值不能是数组，但可以是其他任意类型
+	2.当且仅在函数头或函数原型中，int *arr和int arr[]含义才是相同的，都意味着arr是一个int 指针。
+	记住两个恒等式 arr[i]==*(arr+i),values in two notation.&arr[i]=arr+i; address in two notations.
+	注意如果用array模板的话，要修改arr，需要将arr的地址传给函数头或者原型！
+	3. void show array (const double ar[],int n),指 指针ar指向的是常量数据，不能使用ar修改数据，但是不是说原始数组是常量。因为函数接受数组是使用原始数据。
+	4.禁止将const的地址赋给非const指针。
+	5.while(n-->0),意味着先使用n与0判断然后将其递减，所以在n=1时，条件为true，然后n变成0，被传到了while里面的statement里面。
+	6.*pd[3] an array for 3 pointers. (*pd)[3] a pointer point to an array of 3 elements.
+	7.*&pa==*pa==pa[0];pa==&pa[0]
+	8.*"pizza",解释为p，首先c++将字符串解释为第一个元素的地址，然后用*来得到第一个元素的值。"taco"[2],则指的是元素c。
+	9.结构变量按地址传递需要&，但是不能保护原始数据，如果按值传递，可以保护原始数据，注意基本类型按值传递以便函数使用副本，原始数据得到保护。
+	10.目前看来结构体的赋值跟基本类型赋值是有所区别的，请看如下结构体赋值例子.
+	如果是数组呢,看下面
+
+	struct application {
+	 XXXX
+	 XXXX
+	}
+
+	void f(application a)
+		{
+			cout << a.name << endl;
+			for (int i = 0; i < 3; i++)
+				cout << a.credit_ratings[i] << endl;
+		}
+
+	void f(const application *b)
+	{
+		cout << b->name << endl;
+		for (int i = 0; i < 3; i++)
+			cout << (b+i)->credit_ratings << endl; 书上答案或许有误
+	}
+
+	int arr[3];
+	调用时 f_1(arr,3),f_2(arr,3)
+	void f_1(int a[],int n)
+	{
+		for (int i = 0; i < 3; i++)
+			cout << a[i] << endl;
+	}
+
+	void f_2(const int * a,int n)
+	{
+		for (int i = 0; i < n; i++)
+			cout << *(a+i) << endl;
+	}
+		
+	11. 关于指针， 
+		int a =5; int * p= &a; 需要理解这里的语句只是定义p为一个指向int的指针类型，也就是说 p=&a而不是*p=&a。
+		int a[5]; int * p=a; a=&a[0]； 数组名其实就是数组第一个元素的地址。也就是说这里 p=a
+
+	12. 引用不同于指针，声明引用时必须初始化，引用初始化后，今后即使再赋值也不能设置。详见P258（书上页码）.
+	13. 记住，函数里面的数组如果没有声明，是直接在原数组里面修改，因此不用返回数组
+	14. 第六章的P189讲述了输出错误输入然后输入正确输入的方法，记住。
+		
+		*/
