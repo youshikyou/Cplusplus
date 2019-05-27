@@ -1,0 +1,72 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+// 7.7
+using namespace std;
+
+const int Max = 5;
+double * fill_array(double ar[], int limit);
+void show_array(double ar[], double *p);
+void revalue(double r, double ar[], double *p);
+
+int main(void)
+{
+	double properties[Max];
+	double *lazy = fill_array(properties, Max);
+	show_array(properties, lazy);
+	double factor;
+	cout << "enter revaluation factor:";
+	cin >> factor;
+	revalue(factor, properties, lazy);
+	show_array(properties, lazy);
+	cout << "Done.\n";
+	return 0;
+}
+
+double * fill_array(double ar[], int limit)
+{
+	double temp;
+	int i;
+	for (i = 0; i < limit; i++)
+	{
+		cout << "Enter value #" << (i + 1) << ":";
+		cin >> temp;
+		if (!cin)
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+				continue;
+			cout << "bad input.\n";
+			break;
+		}
+		else if (temp < 0)
+			break;
+		ar[i] = temp;
+	}
+	return (ar+i-1);
+}
+
+void show_array( double ar[], double *p)
+{
+	double * pt;
+	for (pt = ar; pt <=p ; ++pt)
+	{
+		cout << "Property #" << (pt - ar + 1) << ":$";
+		cout << *pt << endl;
+	}
+		
+}
+
+void revalue(double r, double ar[], double *p)
+{
+	double * pt;
+	for (pt = ar; pt <= p; ++pt)
+	{
+		*pt *= r;
+	}
+}
