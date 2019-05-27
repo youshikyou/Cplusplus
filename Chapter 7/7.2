@@ -1,1 +1,67 @@
 
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+using namespace std;
+
+int input(double *arr,int);
+void display(const double *,int);
+void avg(const double *,int);
+const int num = 10;
+int main() 
+{
+	int n;
+	double list[num] = { 0.0 };
+	n = input(list,num);
+	display(list,n);
+	avg(list,n);
+  	return 0;
+}
+int input(double * arr,int size) 
+{
+	double temp;
+	int i;
+	for (i = 0; i < size; ++i)
+	{
+		cout << "please enter #" << (i+1)<<" (negative to quit): "<< "\n";
+		while (!(cin>>temp))
+		{
+			cin.clear();
+			while (cin.get() != '\n')  //这个while loop是针对不是想要的输入时，清除输入，注意嵌套的while必须存在，是把回车符读取并且消除前面错误输入。
+				continue;
+			cout << "try number please :" << endl;
+			
+		}
+		if (temp < 0)
+		{
+			break;
+		}
+		arr[i] = temp;
+	}
+	return i;
+}
+
+void display(const double * score,int n)
+{
+
+	for (int i = 0; i < n; i++)
+		cout << score[i] << "\t";
+	cout << "\n";
+}
+
+void avg(const double * score,int n)
+{
+
+	double sum = 0.0;
+	for (int i = 0; i < n; i++)
+	{
+		sum += score[i];
+	}
+
+	cout << "average is: " << (sum / double(n)) << endl;
+}
