@@ -1,0 +1,90 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+//7.9
+using namespace std;
+
+const int SLEN = 30;
+
+struct student {
+	char fullname[SLEN];
+	char hobby[SLEN];
+	int ooplevel;
+};
+
+int getinfo(student *, int);
+void display1(student st);
+void display2(const student * ps);
+void display3(const student pa[], int n);
+
+int main()
+{
+	cout << "Enter the class size: ";
+	int class_size;
+	cin >> class_size;
+	while (cin.get() != '\n')
+		continue;
+
+	student * ptr_stu = new student[class_size];
+	int entered = getinfo(ptr_stu, class_size);
+	for (int i = 0; i < entered; i++)
+	{
+		display1(ptr_stu[i]);
+		display2(&ptr_stu[i]);
+	}
+	display3(ptr_stu, entered);
+	delete[] ptr_stu;
+	cout << "Done\n";
+	return 0;
+}
+
+int getinfo(student * arr, int n) 
+{
+	int i;
+	for (i = 0; i < n ; i++)
+	{
+		cout << "Enter info student #" << (i+1) << ":" << endl;
+		cout << "Enter Fullname: ";
+		cin.getline(arr[i].fullname, SLEN);
+		if ( arr[i].fullname[0] !=' ')   ///!!!!注意字符判断，要用单引号！！！！
+		{
+			cout << "Enter hobby ; ";
+			cin.getline(arr[i].hobby, SLEN);
+			cout << "ooplevel : ";
+			cin >> arr[i].ooplevel;
+			cin.get();
+		}
+
+		else 
+			break;
+	}
+	return i;
+}
+void display1(student st)
+{
+	cout << "Student full name: " << st.fullname << endl;
+	cout << "Student hobby: " << st.hobby << endl;
+	cout << "Student ooplevel: " << st.ooplevel << endl;
+
+}
+void display2(const student * ps)
+{
+	cout << "Student full name: " << ps->fullname << endl;
+	cout << "Student hobby: " << ps->hobby << endl;
+	cout << "Student ooplevel: " << ps->ooplevel << endl;
+}
+
+void display3(const student pa[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Student full name: " << pa[i].fullname<< endl;
+		cout << "Student hobby: " << pa[i].hobby << endl;
+		cout << "Student ooplevel: " << pa[i].ooplevel << endl;
+	}
+}
