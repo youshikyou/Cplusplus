@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+
+//8.01
+using namespace std;
+
+
+void print_f(const string str , int i= 0);
+
+int main()
+{
+	string str = "buzhidao";
+	cout << "#1" << endl;
+	print_f(str);
+	cout << "#2" << endl;
+	print_f(str);
+	cout << "#3" << endl;
+	print_f(str, 1);
+
+	return 0;
+}
+
+void print_f(const string str, int i)
+{
+	
+
+	static int times = 1;
+
+	if (i)
+		for (int i = 1; i <= times; ++i)
+			cout << str << endl;
+	else
+		cout << str << endl;
+
+	times++;
+
+}
