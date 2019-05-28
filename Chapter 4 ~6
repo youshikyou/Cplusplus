@@ -62,7 +62,8 @@ int main() {
 		cin.getline(name,size)或者
 		cin.get(name,size)，但是这时候并没有获取回车符还要加上cin.get()读取换行符。
 		读取string类型用
-		getline(cin,variable_name)
+		getline(cin,variable_name) 
+		要注意的是，这里cin.getline和 getline的variable_name其实是地址！！！cin.getline((pt+i),size),pt这里是指针类型！！！
 
 	原程序是
 	const int ArSize = 20;
