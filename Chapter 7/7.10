@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+
+//7.10
+using namespace std;
+
+double calculate(double, double, double (*pf)(double,double));
+double add (double, double);
+double mul(double, double);
+double sq(double, double);
+const int fsize = 3;
+
+int main()
+{
+	double x, y, result;
+	double (*pf[fsize]) (double, double) = { add,mul,sq };
+
+	cout << "Please enter two numbers:" << endl;
+	cout << "enter number x" << endl;
+
+	while(!(cin >> x))
+	{
+		cin.clear();
+		while (cin.get() != '\n')
+			continue;
+		cout << "enter number x" << endl;
+	}
+	cout << "enter number y" << endl;
+
+	while (!(cin >>y))
+	{
+		cin.clear();
+		while (cin.get() != '\n')
+			continue;
+		cout << "enter number y " << endl;
+	}
+
+
+	for (int i = 0; i < fsize; i++)
+	{
+		result = calculate(x, y, pf[i]);
+		cout << "result #" << (i+1) << ": " << result << endl;
+
+	}
+
+	return 0;
+}
+
+double add (double x, double y)
+{
+	return x + y;
+}
+
+double mul(double x, double y)
+{
+	return x * y;
+}
+
+double sq(double x, double y)
+{
+	return (x*x)*(y*y);
+}
+
+double calculate(double x, double y , double (*pf)(double x_1,double y_1))
+{
+	return (*pf)(x, y);
+}
