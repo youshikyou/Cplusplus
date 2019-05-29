@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+
+//8.3
+using namespace std;
+
+void transfer(string &);
+void show(const string &);
+
+int main()
+{
+	string str;
+	cout << "Enter a string(q to quit): ";
+	getline(cin, str);
+	while (str != "q")
+	{
+		transfer(str);
+		show(str);
+		cout << "Next string(q to quit): ";
+		getline(cin, str); //如果遇到定界符或字数达到限制，则读取终止，d定界符都不会被保存进s对应的数组中。
+	}
+
+	cout << "bye" << endl;
+	return 0;
+}
+
+void transfer(string &str)
+{
+	for (int i = 0; i < str.size(); i++)
+	{
+		if (isalpha(str[i]))
+			str[i] = toupper(str[i]);
+	}
+}
+void show(const string & str)
+{
+	cout << str << endl;
+}
