@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<string>
+#include<climits>
+#include<cctype>
+#include<fstream>
+
+//8.02
+using namespace std;
+
+struct CandyBar {
+
+	char brand[30];
+	double weight;
+	int calories;
+};
+
+
+void candy_info(CandyBar &, const char * brand ="Millennium Munch" , double weight = 2.85, int calories = 350);
+
+void candy_show(const CandyBar&);
+
+int main()
+{
+	CandyBar abc;
+	char brand[] = "kex";
+	double weight = 3.4;
+	int calories = 500;
+	candy_info(abc);
+	candy_show(abc);
+
+	candy_info(abc, brand, weight, calories);
+	candy_show(abc);
+
+
+	return 0;
+}
+void candy_info(CandyBar & info, const char * brand, double w, int ca)
+{
+	/*函数原型 char *strcpy(char *dest,const char *src)
+	功能是：从src地址开始且含有null结束符的字符串复制到以dest地址开始的字符串中，并返回指向dest的指针。
+	通俗的讲就是将 src字符数组复制到dest数组中，如果dest数组本身有数据，会把src里的数据全部复制到dest中，
+	如果dest中有数据小于src地址长度的将会被覆盖，而大于src长度的将保留*/
+	strcpy_s(info.brand, brand);  
+	info.weight = w;
+	info.calories = ca;
+
+}
+
+void candy_show(const CandyBar &info)
+{
+	cout << info.brand << endl;
+	cout << info.weight << endl;
+	cout << info.calories << endl;
+}
