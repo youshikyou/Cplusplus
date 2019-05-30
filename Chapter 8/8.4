@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<climits>
+#include<cctype>
+#include<fstream>
+#include <string>
+
+//8.4
+
+struct stringy {
+	char *str;
+	int ct; //length of string(not counting '\0')
+};
+
+void show(const char *, int i = 1);
+void show(const stringy &, int i = 1);
+void set(stringy &, char *);
+
+int main()
+{
+	stringy beany;
+	char testing[] = "reality isn't what it used to be.";
+	set(beany, testing);
+
+	show(beany);
+	show(beany, 2);
+	testing[0] = 'D';
+	testing[1] = 'u';
+	show(testing);
+	show(testing, 3);
+	show("Done!");
+	return 0;
+}
+
+void set(stringy &ps, char * pc)
+{
+	ps.ct = std::strlen(pc);  //strlen 直到遇到结束符'\0'。返回的长度大小不包括'\0'。
+	ps.str = new char[ps.ct+1]; //注意这里要分配内存，负责没有东西。
+	strcpy_s(ps.str,ps.ct+1,pc); //需要三个参数，同时第二arguement不能没有+1，否则提示buffer不足。
+
+}
+
+void show(const char *p, int i)
+{
+	while (i-- > 0)
+		std::cout << p << std::endl;
+
+}
+
+void show(const stringy & p , int i)
+{
+	while (i-- > 0)
+		std::cout << p.str << std::endl;
+
+}
