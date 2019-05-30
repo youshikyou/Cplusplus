@@ -1,0 +1,4 @@
+如何建立一个多个字符串组成的数组，如下是一种方法，8.6就是用这个技术
+const char *season [4] ={"spring", "summer","autumn","winter"}，
+season是一个指向4个字符串的指针，season中每个元素都是一组字符串，但同时，c++里面，也就指的是字符串的第一个元素的地址。
+也就是说，season[0]，它是spring的地址。 同时，因为strlen，strcpy这类的函数，是地址传递，所以，strlen(season[0])是有效的原因。
