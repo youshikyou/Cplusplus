@@ -5,3 +5,7 @@ season是一个指向4个字符串的指针，season中每个元素都是一组�
 
 用template explicit instantiation的时候，特别要注意如果template的general version更适合call时候的类型，将不会使用explicit的template，
 在8.6中，template 的 explicit, 如果不用const类型，将使用general version，就没有比较过字符串长度，所以特别要注意分析是否type是不是更符合的问题。
+
+注意 int *p1[3] 和 int p2[3]的区别，int * p1[3]是指创建一个指向int型的3个pointer的数组，int p2[3]是指创建一个包含3个int型的数组。
+p1是指第一个指针的地址，*p1[0]和*p1是指第一个指针指内容， *p1[1]和*(p1+1)指的是第二个指针指的内容，p1[0],p1[1]指的是地址。
+p2是第一个元素的地址，*p2是第一个元素的内容,p2[1]和*(p2+1)是第二个元素内容。
