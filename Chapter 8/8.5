@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<climits>
+#include<cctype>
+#include<fstream>
+#include <string>
+
+//8.4
+using namespace std;
+
+template <typename T>
+T Max5(T *);
+
+int main()
+{
+	double arr_1[5] = { 0.0,3.0,1.0,4.0,5.0 };
+	cout << "double max" << Max5(arr_1) << endl;
+	int arr_2[5] = { 3,4,1,5,7 };
+	cout << "int max" << Max5(arr_2);
+	return 0;
+}
+
+template <typename T>
+T Max5(T *p)
+{
+	T max = p[0];
+	for (int i = 0; i <= 3; i++)
+	{	
+		if (max < p[i + 1])
+			max = p[i + 1];
+	}
+
+	return max;
+}
