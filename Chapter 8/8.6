@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<climits>
+#include<cctype>
+#include<fstream>
+#include <string>
+
+//8.6
+using namespace std;
+
+template <typename T> T Maxn(T *,int);
+
+template <>  char * Maxn<>(char **,int );
+
+int main()
+{
+	double arr_1[5] = { 0.0,3.0,1.0,4.0,5.0 };
+	cout << "double max: " << Maxn(arr_1,5) << endl;
+
+	int arr_2[4] = { 3,4,1,5 };
+	cout << "int max: " << Maxn(arr_2, 4) << endl;
+
+	const char *arr_3[4] = { "sdf","tttq","ttttrrsdss" ,"q12221"};  
+	cout << "char max:" << Maxn(arr_3, 4) << endl;
+
+	return 0;
+}
+
+template <typename T>
+T Maxn(T *p,int n)
+{
+	T max = p[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (p[i] > max)
+			max = p[i];
+	}
+
+	return max;
+}
+
+template <> char * Maxn<>(char **p, int n)
+{
+	char * max = p[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (strlen(p[i]) > strlen(max))
+		{
+			max = p[i];
+		}
+	}
+	return max;
+}
+
