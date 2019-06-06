@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<climits>
+#include<cctype>
+#include<fstream>
+#include <string>
+#include<new>
+
+const int size = 2;
+struct chaff
+{
+	char dross[20];
+	int slag;
+};
+void set(chaff &c,const char *d,int s);
+void show(chaff&c);
+
+chaff buffer_1[size];
+
+int main()
+{
+	chaff *buffer_2 = new (buffer_1) chaff[size] ;
+	
+	set(buffer_2[0], "sf", 2);
+	set(buffer_2[1], "ssff", 4);
+	for (int i = 0; i < size; i++)
+		show(buffer_2[i]);
+
+	return 0;
+}
+
+void set(chaff &c, const char *d, int s)
+{
+	strcpy_s(c.dross, d);
+	c.slag = s;
+}
+
+void show(chaff &c)
+{
+	using namespace std;
+	cout << "dross: " << c.dross << endl;
+	cout << "dross: " << c.slag << endl;
+}
+
