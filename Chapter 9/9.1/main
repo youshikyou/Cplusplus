@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include<array>
+#include <cstring>
+#include<climits>
+#include<cctype>
+#include<fstream>
+#include <string>
+#include "golf.h"
+const int Size = 3;
+
+int main()
+{
+	golf ann;
+	setgolf(ann, "Ann Birdfree", 24);
+	showgolf(ann);
+
+	golf andy;
+	setgolf(andy);
+	showgolf(andy);
+
+	golf member [Size];
+	int flag;
+	int i = 0;
+	while ( i< Size)
+	{
+		std::cout << "#" << (i + 1) << " member"<<std::endl;
+		flag= setgolf(member[i]);
+		if (flag == 0)
+		{
+			std::cout << "bye" << std::endl;
+			break;
+		}
+
+		else
+			i++;
+	}
+	for (int j = 0; j < i; j++)
+		showgolf(member[j]);
+
+	return 0;
+}
