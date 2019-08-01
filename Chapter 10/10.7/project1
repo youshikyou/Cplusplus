@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cstring>
+#include<climits>
+#include<cctype>
+#include <string>
+#include "Plorg.h"
+
+
+int main()
+{
+	Plorg a;
+	a.Plorgshow();
+	Plorg b("zhiqiang", 51);
+	b.Plorgshow();
+	Plorg c = Plorg();
+	c.Plorgshow();
+	Plorg d = Plorg("deyuan", 49);
+	d.Plorgshow();
+
+	b.reset(60);
+	b.Plorgshow();
+
+	return 0;
+}
