@@ -17,4 +17,5 @@ Stock stock1("NanoSmart",12,20.0)
 void show（） const；
 函数定义
 void stock：：show() const
+10.P114 类和结构体用箭头运算符
 */
