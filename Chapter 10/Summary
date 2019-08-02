@@ -18,4 +18,6 @@ void show（） const；
 函数定义
 void stock：：show() const
 10.P114 类和结构体用箭头运算符
+11.const成员函数 ， const加在函数后面，则表明对象调用该函数时候不会被修改。函数的形参如果有const，则表明函数不会修改传递进去的值。
+const如果加载函数前面，则表示函数返回的值类型是const。
 */
