@@ -1,0 +1,16 @@
+#include <iostream>
+#include "Vector.h"
+
+int main()
+{
+	using namespace std;
+	using VECTOR::Vector;
+	Vector test;
+	test.reset(10, 10);
+	cout << test << endl;
+	test.magval();
+	test.angval();
+
+	
+	return 0;
+}
