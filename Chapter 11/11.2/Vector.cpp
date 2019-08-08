@@ -12,41 +12,101 @@ namespace VECTOR
 
 	const double Rad_to_deg = 45.0 / atan(1.0);
 
-	void Vector::magval()const
+	void Vector::set_x(double n1,double n2)
 	{
-		cout << "mag value: " <<sqrt(x*x + y * y) << '\n';
+		x = n1 * cos(n2);
 	}
 
-	void Vector::angval()const
+	void Vector::set_y(double n1,double n2)
 	{
-		if (x == 0.0&&y == 0.0)
-
-			cout << "ang value: " << 0 << '\n';
-		else
-			cout << "ang value: " << atan2(y, x) << '\n';
-		
+		y = n1 * sin(n2);
 	}
+
+
+	//public method 
 
 	Vector::Vector()
 	{
 		x = y = 0.0;
 	}
 
-	Vector::Vector(double n1, double n2)
+	Vector::Vector(double n1, double n2, Mode form)
 	{
-		x = n1;
-		y = n2;
+		mode = form;
+		if (form == RECT)
+		{
+			x = n1;
+			y = n2;
+
+		}
+		else if (form == POL)
+		{
+			set_x(n1,n2);
+			set_y(n1, n2);
+		}
+		else
+		{
+			cout << "Incorrect 3rd argument to Vector() --";
+			cout << "Vector set to 0 \n";
+			x = y = 0.0;
+			mode = RECT;
+		}
 	}
 
-	void Vector::reset(double n1, double n2)
+	void Vector::reset(double n1, double n2, Mode form)
 	{
-		x = n1;
-		y = n2;
+		mode = form;
+		if (form == RECT)
+		{
+			x = n1;
+			y = n2;
+		}
+		else if (form == POL)
+		{
+			set_x(n1,n2);
+			set_y(n1,n2);
+
+		}
+		else
+		{
+			cout << "Incorrect 3rd argument to Vector() --";
+			cout << "Vector set to 0 \n";
+			x = y = 0.0;
+			mode = RECT;
+
+		}
 	}
 
 	Vector::~Vector()
 	{
 	}
+
+	double Vector::magval() const
+	{
+		return sqrt(x*x+y*y);
+	}
+
+	double Vector::anval() const
+	{
+		if (x == 0.0&&y == 0.0)
+			return 0;
+		else
+			return atan2(y, x);
+	}
+
+
+	void Vector::polar_mode()
+	{
+		mode = POL;
+	}
+
+	void Vector::rect_mode()
+	{
+		mode = RECT;
+	}
+
+
+
 
 
 	Vector Vector::operator+(const Vector &b) const
@@ -71,16 +131,37 @@ namespace VECTOR
 
 	Vector operator *(double n, const Vector &a)
 	{
-		return a*n;
+		return a * n;
 	}
 
 	std::ostream & operator <<(std::ostream&os, const Vector&v)
 	{
-
-		os << "(x,y) = (" << v.x << "," << v.y<<")";
-
+		if (v.mode == Vector::RECT)
+		{
+			os << "(x,y) = (" << v.x << "," << v.y << ")";
+		}
+		else if (v.mode == Vector::POL)
+		{
+			os << "(m,a) = (" << v.magval() << "," << v.anval()*Rad_to_deg << ")";
+		}
 		return os;
 	}
 
+	/*std::fstream & operator <<(std::fstream&of, const Vector&v)
+	{
+		if (v.mode == Vector::RECT)
+		{
+			of << "(x,y) = (" << v.x << "," << v.y << ")";
+		}
+		else if (v.mode == Vector::POL)
+		{
+			of << "(m,a) = (" << v.mag << "," << v.ang*Rad_to_deg << ")";
+		}
+		return of;
+	}*/
+
 }
+
+
+
 
