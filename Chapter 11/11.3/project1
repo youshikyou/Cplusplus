@@ -1,0 +1,95 @@
+#include <iostream>
+#include <cstdlib>
+#include<ctime>
+#include "Vector.h"
+
+int main()
+{
+	using namespace std;
+	using VECTOR::Vector;  //不需要namespace
+	srand(time(0));
+	double direction;
+	Vector step;
+	Vector result(0.0, 0.0);
+	unsigned long steps = 0;
+	double target;
+	double dstep;
+	int max_step = 0;
+	int min_step = 0;
+	double total_step = 0.0;
+	int N;
+	int count=0;
+	cout << "Please enter how many rounds: " << endl;
+	cin >> N;
+	int *ps = new int[N];
+
+	cout << "Enter 1st target distance(q to quit): ";
+
+	while (cin >> target && count<N)
+	{
+		cout << "Enter step length: " << endl;
+		if (!(cin >> dstep))
+			break;
+
+		while (result.magval() < target)
+		{
+			direction = rand() % 360;
+			step.reset(dstep, direction, Vector::POL);
+			result = result + step;
+			steps++;
+		}
+
+		cout << "After " << steps << " steps, the subject has the following location:\n";
+		cout << result << endl;
+		result.polar_mode();
+		cout << "or\n" << result << endl;
+		cout << "Average outward distance per step = " << result.magval() / steps << endl;
+		ps[count] = steps;
+		count++;
+		steps = 0;
+		result.reset(0.0, 0.0, Vector::RECT);
+		if (count + 1 > N)
+			break;
+		cout << "Enter #"<<(count+1)<<" target distance (q to quit):";
+	}
+
+	if (count == 0)
+	{
+		cout << "Among " << count << " times run" << endl;
+		cout << "Max step is " << max_step << endl;
+		cout << "Min step is " << min_step << endl;
+		cout << "Average step is " << 0 << endl;
+	}
+
+	else
+	{
+		max_step = ps[0];
+		min_step = ps[0];
+		total_step = ps[0];
+
+		for (int i = 1; i < count; i++)
+		{
+			if (max_step < ps[i])
+			{
+				max_step = ps[i];
+			}
+			if (min_step > ps[i])
+			{
+				min_step = ps[i];
+			}
+			total_step += ps[i];
+		}
+		cout << "Among " << count << " times run" << endl;
+		cout << "Max step is " << max_step << endl;
+		cout << "Min step is " << min_step << endl;
+		cout << "Average step is " << total_step / count << endl;
+	}
+
+	cout << "Bye!\n";
+	cin.clear();
+	while (cin.get() != '\n')
+		continue;
+
+	delete[]ps;
+	return 0;
+}
